@@ -21,6 +21,8 @@ const ORDERS_COLUMNS_IN_ORDER = [
   'customerEmail',
   'totalEstimatedValue',
   'totalQuantity',
+  'totalBlackQuantity',
+  'totalWhiteQuantity',
   'orderLines',
 ];
 const paperTypes = ['black', 'white']
@@ -118,6 +120,7 @@ async function writeOrders(orders, products) {
 
       return {
         name: product.name,
+        paperType: getPaperType(product.name),
         quantity: line.quantity,
         valueEstimate: potentialValue * line.quantity,
       }
@@ -132,6 +135,8 @@ async function writeOrders(orders, products) {
       customerEmail: order.customer.email,
       totalEstimatedValue: _.sumBy(mappedProducts, p => p.valueEstimate),
       totalQuantity: _.sumBy(mappedProducts, p => p.quantity),
+      totalBlackQuantity: _.sumBy(_.filter(mappedProducts, p => p.paperType === 'black'), p => p.quantity),
+      totalWhiteQuantity: _.sumBy(_.filter(mappedProducts, p => p.paperType === 'white'), p => p.quantity),
       orderLines: _.map(mappedProducts, p => `${p.quantity}x "${p.name}"`).join(', '),
     }
   })
