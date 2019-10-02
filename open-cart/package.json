@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "finnish-holidays-js": "^1.1.0",
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.11",
+    "query-string": "^6.8.3"
   }
 }
