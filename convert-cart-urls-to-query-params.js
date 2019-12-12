@@ -28,7 +28,7 @@ urls.forEach(u => {
     posterStyle: item.posterStyle,
     size: item.size,
     updateCoords: item.autoUpdateCoordinates,
-    zoom: item.mapZoom + 1,
+    zoom: item.mapZoom,
   };
   console.log(item.labelHeader)
   console.log(`https://design.alvarcarto.com?${queryString.stringify(newParams)}`);
